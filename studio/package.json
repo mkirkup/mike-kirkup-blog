@@ -15,16 +15,16 @@
     "test": "sanity check"
   },
   "dependencies": {
-    "sanity": "^3.60.0",
-    "@sanity/vision": "^3.60.0",
-    "@sanity/dashboard": "^4.1.0",
-    "sanity-plugin-dashboard-widget-netlify": "^2.0.0",
+    "@sanity/dashboard": "^4.1.4",
+    "@sanity/vision": "^4.3.0",
     "date-fns": "^2.30.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
-    "styled-components": "^6.1.0"
+    "sanity": "^4.3.0",
+    "sanity-plugin-dashboard-widget-netlify": "^2.0.0",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
