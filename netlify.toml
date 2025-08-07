@@ -1,0 +1,12 @@
+[build]
+  # Use the newer Jammy (Ubuntu 22.04) build image
+  # This replaces the deprecated Focal (Ubuntu 20.04) image
+  environment = { NETLIFY_BUILD_BASE = "jammy" }
+  
+  # Build configuration
+  command = "npm run build-web"
+  publish = "web/public"
+
+[build.environment]
+  # Node version is specified in .nvmrc (20.18.1)
+  # Additional environment variables can be added here if needed
