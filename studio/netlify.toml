@@ -2,6 +2,7 @@
   base = "studio"
   command = "npm install && npm run build"
   publish = "studio/dist"
+  environment = { NODE_VERSION = "20.19.0" }
 
 [[redirects]]
   from = "/*"
