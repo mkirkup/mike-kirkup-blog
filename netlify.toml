@@ -4,7 +4,7 @@
   publish = "web/public"
   
   # Use the newer Jammy (Ubuntu 22.04) build image
-  # Node version is specified in .nvmrc (20.18.1)
+  # Node version is specified in .nvmrc (20.19.0)
   environment = { NETLIFY_BUILD_BASE = "jammy" }
 
 # Redirect studio requests to the dedicated studio site
