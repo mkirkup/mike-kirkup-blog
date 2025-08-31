@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './newsletter-signup.module.css'
 
-const NewsletterSignup = ({ buttondownUsername = 'mikekirkup' }) => {
+const NewsletterSignup = ({ buttondownUsername = 'mkirkup' }) => {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState('')
 
