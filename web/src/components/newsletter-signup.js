@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './newsletter-signup.module.css'
 
-const NewsletterSignup = ({ buttondownUsername = 'mkirkup' }) => {
+const NewsletterSignup = ({ buttondownUsername = 'mkirkup', compact = false }) => {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState('')
 
@@ -33,11 +33,11 @@ const NewsletterSignup = ({ buttondownUsername = 'mkirkup' }) => {
   }
 
   return (
-    <div className={styles.newsletterSignup}>
+    <div className={`${styles.newsletterSignup} ${compact ? styles.compact : ''}`}>
       <div className={styles.container}>
-        <h3 className={styles.title}>Subscribe to updates</h3>
+        {!compact && <h3 className={styles.title}>Subscribe to updates</h3>}
         <p className={styles.description}>
-          Get new posts delivered directly to your inbox
+          {compact ? 'Get new posts in your inbox:' : 'Get new posts delivered directly to your inbox'}
         </p>
         
         {status === 'success' ? (
@@ -71,9 +71,11 @@ const NewsletterSignup = ({ buttondownUsername = 'mkirkup' }) => {
           </div>
         )}
         
-        <p className={styles.privacy}>
-          No spam, unsubscribe anytime.
-        </p>
+        {!compact && (
+          <p className={styles.privacy}>
+            No spam, unsubscribe anytime.
+          </p>
+        )}
       </div>
     </div>
   )

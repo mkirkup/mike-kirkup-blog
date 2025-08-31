@@ -30,8 +30,8 @@ function BlogPost (props) {
         <div className={styles.grid}>
           <div className={styles.mainContent}>
             <h1 className={styles.title}>{title}</h1>
-            <NewsletterSignup />
             {_rawBody && <PortableText blocks={_rawBody} />}
+            <NewsletterSignup />
           </div>
           <aside className={styles.metaContent}>
             {publishedAt && (

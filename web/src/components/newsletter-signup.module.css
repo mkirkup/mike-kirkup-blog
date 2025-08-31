@@ -107,3 +107,29 @@
   font-size: var(--font-small-size);
   color: var(--color-gray);
 }
+
+/* Compact version for homepage */
+.compact {
+  margin: 1.5rem 0 2rem;
+  padding: 1rem;
+}
+
+.compact .container {
+  max-width: 100%;
+}
+
+.compact .description {
+  margin: 0 0 0.75rem;
+  font-size: var(--font-base-size);
+}
+
+.compact .form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+@media (--media-min-small) {
+  .compact .form {
+    flex-direction: row;
+  }
+}
