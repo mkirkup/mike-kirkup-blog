@@ -10,6 +10,7 @@ import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
+import NewsletterSignup from '../components/newsletter-signup'
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -104,6 +105,7 @@ const IndexPage = props => {
             browseMoreHref='/archive/'
           />
         )}
+        <NewsletterSignup />
       </Container>
     </Layout>
   )

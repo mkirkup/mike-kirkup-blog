@@ -5,6 +5,7 @@ import {imageUrlFor} from '../lib/image-url'
 import PortableText from './portableText'
 import Container from './container'
 import AuthorList from './author-list'
+import NewsletterSignup from './newsletter-signup'
 
 import styles from './blog-post.module.css'
 
@@ -52,6 +53,7 @@ function BlogPost (props) {
             )}
           </aside>
         </div>
+        <NewsletterSignup />
       </Container>
     </article>
   )

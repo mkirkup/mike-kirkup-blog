@@ -8,6 +8,8 @@
   --color-very-light-gray: #e7ebed;
   --color-white: #fff;
   --color-accent: #156dff;
+  --color-success: #059862;
+  --color-error: #d33c40;
 
   /* Typography */
   --unit: 16;

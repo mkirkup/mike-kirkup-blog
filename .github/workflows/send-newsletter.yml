@@ -1,0 +1,27 @@
+name: Send Newsletter via Buttondown
+
+on:
+  schedule:
+    # Run every hour at minute 15 (e.g., 1:15, 2:15, 3:15)
+    - cron: '15 * * * *'
+  workflow_dispatch: # Allow manual trigger for testing
+
+jobs:
+  check-and-send:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Check RSS and send newsletter
+      env:
+        BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
+        RSS_FEED_URL: 'https://mikekirkup.com/rss.xml'
+      run: |
+        node .github/scripts/check-rss-and-send.js
