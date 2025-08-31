@@ -30,6 +30,7 @@ function BlogPost (props) {
         <div className={styles.grid}>
           <div className={styles.mainContent}>
             <h1 className={styles.title}>{title}</h1>
+            <NewsletterSignup />
             {_rawBody && <PortableText blocks={_rawBody} />}
           </div>
           <aside className={styles.metaContent}>
@@ -53,7 +54,6 @@ function BlogPost (props) {
             )}
           </aside>
         </div>
-        <NewsletterSignup />
       </Container>
     </article>
   )
