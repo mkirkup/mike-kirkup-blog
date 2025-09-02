@@ -148,17 +148,30 @@ async function main() {
     // Load sent posts
     const sentData = await loadSentPosts();
     
-    // Check for new posts (published in last 2 hours to account for delays)
-    const twoHoursAgo = new Date(Date.now() - 2 * 60 * 60 * 1000);
+    // Get current time
+    const now = new Date();
+    const twoHoursAgo = new Date(now.getTime() - 2 * 60 * 60 * 1000);
+    
+    // Check for new posts that are:
+    // 1. Actually published (pubDate <= now)
+    // 2. Published recently (within last 2 hours)
+    // 3. Not already sent
     const newPosts = posts.filter(post => {
+      const isPublished = post.pubDate <= now; // Only posts with dates in the past
       const isRecent = post.pubDate > twoHoursAgo;
       const notSent = !sentData.sentPosts.includes(post.guid);
-      return isRecent && notSent;
+      
+      if (!isPublished && post.pubDate > now) {
+        console.log(`Skipping scheduled post: ${post.title} (scheduled for ${post.pubDate.toISOString()})`);
+      }
+      
+      return isPublished && isRecent && notSent;
     });
     
     if (newPosts.length === 0) {
-      console.log('No new posts to send');
+      console.log('No new published posts to send');
       console.log(`Latest post: ${posts[0].title} (${posts[0].pubDate.toISOString()})`);
+      console.log(`Current time: ${now.toISOString()}`);
       return;
     }
     

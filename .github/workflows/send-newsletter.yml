@@ -19,9 +19,25 @@ jobs:
       with:
         node-version: '18'
     
+    - name: Restore sent posts cache
+      uses: actions/cache@v3
+      id: cache-sent-posts
+      with:
+        path: .github/scripts/sent-posts.json
+        key: sent-posts-${{ github.run_number }}
+        restore-keys: |
+          sent-posts-
+    
     - name: Check RSS and send newsletter
       env:
         BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
         RSS_FEED_URL: 'https://mikekirkup.com/rss.xml'
       run: |
         node .github/scripts/check-rss-and-send.js
+    
+    - name: Save sent posts cache
+      if: always()
+      uses: actions/cache@v3
+      with:
+        path: .github/scripts/sent-posts.json
+        key: sent-posts-${{ github.run_number }}
