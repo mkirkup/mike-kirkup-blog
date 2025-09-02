@@ -3,6 +3,7 @@
 
 # Dependency directories
 /node_modules
+/.github/scripts/node_modules
 
 # lerna files
 /lerna-debug.log

@@ -6,38 +6,50 @@ on:
     - cron: '15 * * * *'
   workflow_dispatch: # Allow manual trigger for testing
 
+# Prevent concurrent runs to avoid race conditions
+concurrency:
+  group: newsletter-automation
+  cancel-in-progress: false
+
 jobs:
   check-and-send:
     runs-on: ubuntu-latest
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
     
+    - name: Install dependencies
+      run: |
+        cd .github/scripts
+        npm ci || npm install
+    
     - name: Restore sent posts cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       id: cache-sent-posts
       with:
         path: .github/scripts/sent-posts.json
-        key: sent-posts-${{ github.run_number }}
+        key: sent-posts-v1
         restore-keys: |
-          sent-posts-
+          sent-posts-v1
     
     - name: Check RSS and send newsletter
       env:
         BUTTONDOWN_API_KEY: ${{ secrets.BUTTONDOWN_API_KEY }}
         RSS_FEED_URL: 'https://mikekirkup.com/rss.xml'
+        RECENT_POST_WINDOW_HOURS: '2'
+        EMAIL_DELAY_MS: '2000'
       run: |
         node .github/scripts/check-rss-and-send.js
     
     - name: Save sent posts cache
       if: always()
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: .github/scripts/sent-posts.json
-        key: sent-posts-${{ github.run_number }}
+        key: sent-posts-v1
