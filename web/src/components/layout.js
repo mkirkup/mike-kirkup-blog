@@ -11,6 +11,9 @@ const Layout = ({children, onHideNav, onShowNav, showNav, siteTitle}) => (
     <footer className={styles.footer}>
       <div className={styles.footerWrapper}>
         <div className={styles.siteInfo}>
+          Co-founder of <a href='https://www.elderella.com/'>Elderella</a>
+        </div>
+        <div className={styles.siteInfo}>
           &copy; {new Date().getFullYear()}, Built with <a href='https://www.sanity.io'>Sanity</a>{' '}
           &amp;
           {` `}
