@@ -1,9 +1,10 @@
 """Generate a 16:9 cover image with Gemini and save it to static/images/<name>.jpg.
 
 usage (from the repo root):
-  GK="$(security find-generic-password -s gemini-api-key -a jacquelinemurphy_home -w)" \
-    python3 -I scripts/cover-image.py <name> "<prompt>"
-  GK=... python3 -I scripts/cover-image.py --pending     # the covers for the current drafts
+  ( . ~/.config/content-engine.env; GK="$GEMINI_TOOLS_API_KEY" python3 -I scripts/cover-image.py <name> "<prompt>" )
+  ( . ~/.config/content-engine.env; GK="$GEMINI_TOOLS_API_KEY" python3 -I scripts/cover-image.py --pending )
+
+The key is the Elderella content engine's Gemini key (GEMINI_TOOLS_API_KEY).
 """
 import base64, json, os, subprocess, sys, urllib.request
 
