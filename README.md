@@ -1,38 +1,48 @@
-# Blog with Gatsby
+# mikekirkup.com
 
-_Fully customizable blog template with a React.js front-end._
+Static blog. No CMS, no framework, no dependencies: `build.mjs` turns `posts/*.html` into `dist/`.
+Hosted on Cloudflare Pages (build command `node build.mjs`, output directory `dist`).
 
-Deployed from [sanity.io/create](https://www.sanity.io/create/?template=sanity-io%2Fsanity-template-gatsby-blog).
+```
+node build.mjs                    # production build (drafts excluded)
+INCLUDE_DRAFTS=1 node build.mjs   # include drafts, marked [DRAFT]
+python3 -m http.server 8787 -d dist
+```
 
-## What you have
+## Writing a post
 
-- A blazing fast blog with [Gatsby.js](https://gatsbyjs.org)
-- Structured content using [Sanity.io](https://www.sanity.io)
-- Global deployment on [Netlify](https://netlify.com)
+Create `posts/YYYY-MM-DD-slug.html`:
 
-## Quick start
+```html
+---
+title: Post title
+date: 2026-11-17T14:00:00Z
+slug: post-title
+image: /images/2026-11-17-post-title.jpg
+alt: Description of the image (required when there is an image)
+draft: true
+---
+<!-- excerpt -->
+<p>Shown on the home page, archive, social cards, RSS description and the newsletter email.</p>
+<!-- /excerpt -->
 
-1. Clone this repository
-2. `npm install` in the project root folder on local
-3. `npm run dev` to start the studio and frontend locally
-   - Your studio should be running on [http://localhost:3333](http://localhost:3333)
-   - Your frontend should be running on [http://localhost:8000](http://localhost:8000)
-4. `npm run build` to build to production locally
+<p>Body HTML. Use &lt;h2&gt; for section headings.</p>
+```
 
-## Enable real-time content preview on development
+- URL is `/blog/YYYY/MM/slug/`, from the `date` (UTC). Never change the date or slug of a published post: it changes the URL and the RSS id.
+- Images go in `static/images/`, 16:9, ~1200px wide.
+- If there's no excerpt block, the first paragraph is used.
 
-1. Go to your [project’s API settings on manage.sanity.io](https://manage.sanity.io/projects/d66qejae/settings/api) and create a token with read rights.
-2. Rename `.env.development.template` to `.env.development` and paste in the token: `SANITY_READ_TOKEN="yourTokenHere"`.
-3. Restart the development server (`ctrl + C` and `npm run dev`).
+## Drafts and previews
 
-If you want to turn off preview you can set `watchMode: false` in gatsby-config.js. If you just want to preview published changes you can set `overlayDrafts: false` in gatsby-config.js.
+`draft: true` posts are left out of production builds, but they are included on Cloudflare Pages
+preview deployments (any branch other than `main`). Push a branch to get a preview URL to review.
 
-## Deploy changes
+## Publishing (and the newsletter email)
 
-Netlify automatically deploys new changes commited to master on GitHub. If you want to change deployment branch, do so in [build & deploy settings on Netlify](https://www.netlify.com/docs/continuous-deployment/#branches-deploys).
+Remove `draft: true`, set `date` to now, and push to `main`.
 
-## Stuck? Get help
-
-[![Slack Community Button](https://slack.sanity.io/badge.svg)](https://slack.sanity.io/)
-
-Join [Sanity’s developer community](https://slack.sanity.io) or ping us [on twitter](https://twitter.com/sanity_io).
+The GitHub Action `.github/workflows/send-newsletter.yml` runs hourly at :15. It reads
+`https://mikekirkup.com/rss.xml` and emails Buttondown subscribers any post whose date is within the
+last 2 hours and isn't already in `.github/scripts/sent-posts.json`.
+To publish **without** emailing, set `date` more than 2 hours in the past.
