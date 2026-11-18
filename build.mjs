@@ -2,7 +2,7 @@
 //
 // Posts live in posts/*.html: a front-matter block, an optional excerpt, then the body HTML.
 // Posts with `draft: true` are only built when INCLUDE_DRAFTS=1 or on a Cloudflare Pages
-// preview branch (CF_PAGES_BRANCH set and not "main").
+// preview branch (any branch other than "main").
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -15,7 +15,8 @@ const SITE = {
 }
 const ROOT = path.dirname(new URL(import.meta.url).pathname)
 const OUT = path.join(ROOT, 'dist')
-const branch = process.env.CF_PAGES_BRANCH
+// Cloudflare Pages sets CF_PAGES_BRANCH; Workers Builds sets WORKERS_CI_BRANCH.
+const branch = process.env.CF_PAGES_BRANCH || process.env.WORKERS_CI_BRANCH
 const includeDrafts = process.env.INCLUDE_DRAFTS === '1' || (branch && branch !== 'main')
 
 // ---------- helpers ----------
