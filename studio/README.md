@@ -1,1 +1,0 @@
-# mike-kirkup-blog-studio

@@ -1,0 +1,11 @@
+// Cloudflare Workers static-assets site. Build command: `node build.mjs` (outputs dist/).
+{
+  "name": "mike-kirkup-blog",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": "./dist",
+    // /blog/2026/06/three-yeahs serves .../index.html and redirects to the trailing-slash URL.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

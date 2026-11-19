@@ -1,0 +1,31 @@
+---
+title: Three Yeahs
+date: 2026-06-13T16:47:25.808Z
+slug: three-yeahs
+image: /images/2026-06-13-three-yeahs.jpg
+alt: Three smiling founders cheering with raised fists, each with a speech bubble reading 'Yeah!', set against upward-trending growth charts.
+---
+<!-- excerpt -->
+<p>On Thursday night I was at Startups and Beer, talking with some other founders. Someone asked if I was enjoying building Elderella. I said &quot;yeah.&quot; Then &quot;yeah.&quot; Then &quot;yeah&quot; again — three of them, one for each of the three ways AI is transforming startups right now.</p>
+<!-- /excerpt -->
+
+<p>On Thursday night I was at Startups and Beer (shout out to Communitech for organizing), talking with some other founders. Someone asked if I was enjoying building Elderella. I said &quot;yeah.&quot; Then &quot;yeah.&quot; Then &quot;yeah&quot; again — three of them, as different parts of my role as co-founder played out in real time inside my head.</p>
+<p>So what generates three yeahs?</p>
+<p>Right now it feels like startup land is going through a massive transformation on three fronts at once, all thanks to AI. But &quot;AI&quot; has become such a broad category that we've stopped being specific about what is actually changing. So I wanted to write it down and be specific about how I think about it.</p>
+<h2>Yeah #1: AI is changing how we build a product</h2>
+<p>Everything from AI development tools (Claude Code is my favorite) to AI reading logs more effectively than any human, to a real shift in how we design products. The entire product development process is in flux.</p>
+<p>There are countless articles on using tools to write code faster, review it more effectively, or speed up design. But almost no one is sitting back and asking the holistic question — because if you only speed up the typing, the bottleneck just moves somewhere else.</p>
+<p>And it does move. For us it moved off of writing the code and onto trusting it. When a feature can be built in an afternoon, the hard part isn't the building — it's knowing it actually works, that it didn't quietly break something else, that it behaves the way you intended when a real caregiver is leaning on it at 11pm. So the work shifts to evals, to verification, to keeping the whole thing coherent while a dozen things move at once. Faster hands just made good judgment the scarce resource. That's the part worth designing around, and it's the part nobody's writing the articles about.</p>
+<h2>Yeah #2: AI is changing what software can do</h2>
+<p>Adding intelligence to whatever your software did before unlocks things that simply weren't possible.</p>
+<p>Some parts of the Elderella product are table stakes — track a medication. Other parts are where intelligence becomes genuinely delightful: warn me that the medication the doctor just prescribed is one we've tried before and it didn't go well, or flag that two of the drugs I'm already on don't play nicely together.</p>
+<p>Everyone is figuring this out as they go. Doing AI well inside a product means wrestling with evals, decisions about retaining data for training, anonymization, privacy, and a pile of hard trade-offs. The horror stories are already piling up — like the company that kept every confidential conversation in a therapy app for training, only to have them <a href="https://www.proofnews.org/womans-talkspace-therapy-app-sessions-exposed-in-court/">subpoenaed</a>.</p>
+<h2>Yeah #3: AI is changing how we build and run companies</h2>
+<p>Startups feel this first and hardest, because we don't have legacy processes or the emotional baggage of &quot;that's how we've always done it.&quot;</p>
+<p>We're heading toward a world where the internal software tooling a company builds for itself matches or exceeds the code that ships to customers. Think about that. You will likely write more code to run your company than you will to deliver value to your customers.</p>
+<p>That is absolutely wild.</p>
+<h2>All three at once</h2>
+<p>I find each of these fascinating on its own. But what I love most is the intersection — and the easiest way to see it is to watch a single feature pass through all three.</p>
+<p>Take that medication warning — the one that flags a drug your loved one has tried before, or two prescriptions that don't play nicely together. We built it in a way that wasn't really possible a year ago (#1). It does something the old version of this software simply couldn't do — it doesn't just store the medication, it understands it (#2). And shipping it responsibly meant building a pile of internal machinery that no customer will ever see: the evals that keep it honest, the data handling, the anonymization, the tooling to watch how it behaves in the wild (#3).</p>
+<p>One small feature. All three forces at once, constantly bleeding into each other.</p>
+<p>No wonder it took me three yeahs.</p>

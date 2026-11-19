@@ -1,15 +1,5 @@
+# Temporary: keeps Netlify serving the new static build until DNS moves to Cloudflare Pages.
+# Delete this file (and the Netlify site) after the cutover.
 [build]
-  # Build configuration
-  command = "npm run build-web"
-  publish = "web/public"
-  
-  # Use the newer Jammy (Ubuntu 22.04) build image
-  # Node version is specified in .nvmrc (20.19.0)
-  environment = { NETLIFY_BUILD_BASE = "jammy" }
-
-# Redirect studio requests to the dedicated studio site
-[[redirects]]
-  from = "/studio/*"
-  to = "https://mike-kirkup-blog-studio.netlify.app/:splat"
-  status = 301
-  force = true
+  command = "node build.mjs"
+  publish = "dist"
