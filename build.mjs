@@ -78,6 +78,9 @@ const head = ({title, description, image, type = 'website'}) => `<!DOCTYPE html>
 <meta property="og:type" content="${type}">
 ${image ? `<meta property="og:image" content="${esc(SITE.url + image)}">\n` : ''}<meta name="twitter:card" content="${image ? 'summary_large_image' : 'summary'}">
 <link rel="alternate" type="application/rss+xml" title="${esc(SITE.feedTitle)}" href="/rss.xml">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/site.css">
 </head>
 <body>`
